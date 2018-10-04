@@ -23,7 +23,7 @@ This repository will show you how to put your own model directly into mobile(iOS
 
 
 # Part 0. 
-### Basic FFNN example to convert
+### Basic FFNN example
 I'll use Golbin code in this [TensorFlow-Tutorials](https://github.com/golbin/TensorFlow-Tutorials/blob/master/04%20-%20Neural%20Network%20Basic/01%20-%20Classification.py)
 
 ```python
