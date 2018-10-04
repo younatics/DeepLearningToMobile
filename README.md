@@ -1,4 +1,4 @@
-# Deep Learning To Mobile
+# Deep Learning To Mobile ⚡️
 ### Curated way to convert deep learning model to mobile. 
 
 This repository will show you how to put your own model directly into mobile(iOS/Android) with basic example. First part is about **deep learning model to mobile machine learning framwork**, and second part is about **deep learning framwork to mobile machine learning framwork**
