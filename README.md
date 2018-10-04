@@ -89,9 +89,9 @@ print('Accuracy: %.2f' % sess.run(accuracy * 100, feed_dict={X: x_data, Y: y_dat
 #### Keras
 ```python
 import numpy as np
-import keras
-from keras.models import Sequential
-from keras.layers import Bidirectional, TimeDistributed, Concatenate, LSTM, Dense, Dropout, Flatten, Activation, BatchNormalization
+import tensorflow as tf
+# from keras.models import Sequential
+# from keras.layers import Bidirectional, TimeDistributed, Concatenate, LSTM, Dense, Dropout, Flatten, Activation, BatchNormalization
 x_data = np.array(
     [[0, 0], [1, 0], [1, 1], [0, 0], [0, 0], [0, 1]])
 
@@ -104,15 +104,13 @@ y_data = np.array([
     [0, 0, 1]
 ])
 
-model = Sequential()
-model = Sequential()
-model.add(Dense(10, input_dim=2, init="uniform",activation="relu"))
-model.add(Dense(2, activation="relu", kernel_initializer="uniform"))
-model.add(Dense(3))
-model.add(Activation("softmax"))
+model = tf.keras.models.Sequential()
+model.add(tf.keras.layers.Dense(10, input_dim=2,activation="relu"))
+model.add(tf.keras.layers.Dense(2, activation="relu", kernel_initializer="uniform"))
+model.add(tf.keras.layers.Dense(3))
+model.add(tf.keras.layers.Activation("softmax"))
 
-
-adam = keras.optimizers.Adam(lr=0.01)
+adam = tf.keras.optimizers.Adam(lr=0.01)
 
 model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
 model.summary()
@@ -266,3 +264,54 @@ Now you can use `FFNN.tflite` in Android project!
 - [Toco](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/toco)
 - [Intro to Machine Learning on Android — How to convert a custom model to TensorFlow Lite](https://heartbeat.fritz.ai/intro-to-machine-learning-on-android-how-to-convert-a-custom-model-to-tensorflow-lite-e07d2d9d50e3)
 
+## Keras to CoreML (iOS)
+`coremltools` is the recommended way from Apple to convert Keras to CoreML
+
+```python
+import coremltools
+
+coreml_model = coremltools.converters.keras.convert(model)
+coreml_model.save('FFNN.mlmodel')
+```
+
+Now you can use `FFNN.mlmodel` in Android project! 
+
+| Neural Network | `coremltools` |
+| :-: | :---: |
+| Feedforward NN | ✔️ |
+| Convolutional NN | ✔️ |
+| Recurrent NN | ✔️ |
+
+### Reference
+- [coremltools](https://github.com/apple/coremltools)
+
+## Keras to TensorFlow Lite (Android)
+`toco` is the recommended way from Google to convert Keras to TensorFlow Lite
+
+Make `.h5` Keras extension and then convert it to `.tflie` extension
+
+```python
+keras_file = "FFNN.h5"
+tf.keras.models.save_model(model, keras_file)
+
+converter = tf.contrib.lite.TocoConverter.from_keras_model_file(keras_file)
+tflite_model = converter.convert()
+open("FFNN.tflite", "wb").write(tflite_model)
+```
+
+Now you can use `FFNN.tflite` in Android project! 
+| Neural Network | `toco` |
+| :-: | :---: |
+| Feedforward NN | ✔️ |
+| Convolutional NN | ✔️ |
+| Recurrent NN | ✖️ |
+
+### Reference
+- [TensorFlow Lite Optimizing Converter & Interpreter Python API reference](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/toco/g3doc/python_api.md)
+
+## Author
+[younatics](https://twitter.com/younatics)
+<a href="http://twitter.com/younatics" target="_blank"><img alt="Twitter" src="https://img.shields.io/twitter/follow/younatics.svg?style=social&label=Follow"></a>
+
+## License
+DeepLearningToMobile is available under the MIT license. See the LICENSE file for more info.
