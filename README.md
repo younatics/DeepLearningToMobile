@@ -74,11 +74,15 @@ print('Accuracy: %.2f' % sess.run(accuracy * 100, feed_dict={X: x_data, Y: y_dat
 ## Part 1. Deep learning model to mobile machine learning framwork
 ### CoreML
 
-| Neural Network | CoreML |
-| :-: | :---: |
-| Feedforward NN | ✔️ |
-| Convolutional NN | ✔️ |
-| Recurrent NN | ✔️ |
+![CoreML](https://github.com/younatics/DeepLearningToMobile/blob/master/img/coreml.png)
+
+- ML Framework supported by Apple, using .mlmodel extension
+- Automatically generated wrapper with Swift or Objective-C
+- | Neural Network | CoreML |
+  | :-: | :---: |
+  | Feedforward NN | ✔️ |
+  | Convolutional NN | ✔️ |
+  | Recurrent NN | ✔️ |
 
 ### REFERENCE
 - [Core ML](https://developer.apple.com/documentation/coreml)
