@@ -17,7 +17,7 @@ This repository has two parts. First is about **deep learning model to mobile ma
 | Framework | CoreML | TensorFlow Mobile | Tensorflow Lite |
 | :-------: | :----: | :---------------: | :-------------: |
 | Tensorflow | `tf-coreml` | `tensorflow` | `tensorflow` |
-| Pytorch | `onnx` |  |  |
-| Keras | `coremltools` | `tensorflow backend` |   |
-| Caffe | `coremltools` | `caffe-tensorflow` |   |
+| Pytorch | `onnx` | ← | ← |
+| Keras | `coremltools` | `tensorflow backend` | ← |
+| Caffe | `coremltools` | `caffe-tensorflow` | ←  |
 
