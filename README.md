@@ -24,8 +24,9 @@ This repository will show you how to put your own model directly into mobile(iOS
 
 # Part 0. 
 ### Basic FFNN example
-I'll use Golbin code in this [TensorFlow-Tutorials](https://github.com/golbin/TensorFlow-Tutorials/blob/master/04%20-%20Neural%20Network%20Basic/02%20-%20Deep%20NN.py)
+I'll use Golbin code in this [TensorFlow-Tutorials](https://github.com/golbin/TensorFlow-Tutorials/blob/master/04%20-%20Neural%20Network%20Basic/02%20-%20Deep%20NN.py), and simple Keras code to convert. I use two examples because there are different limits.
 
+#### TensorFlow
 ```python
 import tensorflow as tf
 import numpy as np
@@ -83,6 +84,40 @@ target = tf.argmax(Y, 1)
 is_correct = tf.equal(prediction, target)
 accuracy = tf.reduce_mean(tf.cast(is_correct, tf.float32))
 print('Accuracy: %.2f' % sess.run(accuracy * 100, feed_dict={X: x_data, Y: y_data}))
+```
+
+#### Keras
+```python
+import numpy as np
+import keras
+from keras.models import Sequential
+from keras.layers import Bidirectional, TimeDistributed, Concatenate, LSTM, Dense, Dropout, Flatten, Activation, BatchNormalization
+x_data = np.array(
+    [[0, 0], [1, 0], [1, 1], [0, 0], [0, 0], [0, 1]])
+
+y_data = np.array([
+    [1, 0, 0], 
+    [0, 1, 0],  
+    [0, 0, 1],  
+    [1, 0, 0],
+    [1, 0, 0],
+    [0, 0, 1]
+])
+
+model = Sequential()
+model = Sequential()
+model.add(Dense(10, input_dim=2, init="uniform",activation="relu"))
+model.add(Dense(2, activation="relu", kernel_initializer="uniform"))
+model.add(Dense(3))
+model.add(Activation("softmax"))
+
+
+adam = keras.optimizers.Adam(lr=0.01)
+
+model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
+model.summary()
+
+reult = model.fit(x_data, y_data, shuffle=True, epochs=10, batch_size=2, validation_data=(x_data, y_data))
 ```
 
 # Part 1. 
