@@ -10,9 +10,9 @@ This repository has two parts. First is about **deep learning model to mobile ma
 
 | Neural Network | CoreML | TensorFlow Mobile | Tensorflow Lite |
 | :-: | :---: | :---------------: | :-------------: |
-| Feedforward NN | ![FFNN-CoreML](https://img.shields.io/badge/Convertible-available-green.svg) | ✔️ | ✔️ |
-| Convolutional NN | ✔️ | ✔️ | ✔️ |
-| Recurrent NN | ✔️ | ✔️ | ✔︎ |
+| Feedforward NN | ![support](https://img.shields.io/badge/convert-available-green.svg) | ![support](https://img.shields.io/badge/convert-available-green.svg) | ![support](https://img.shields.io/badge/convert-available-green.svg) |
+| Convolutional NN | ![support](https://img.shields.io/badge/convert-available-green.svg) | ![support](https://img.shields.io/badge/convert-available-green.svg) | ![support](https://img.shields.io/badge/convert-available-green.svg) |
+| Recurrent NN | ![support](https://img.shields.io/badge/convert-available-green.svg) | ![support](https://img.shields.io/badge/convert-available-green.svg) | ![support](https://img.shields.io/badge/convert-partial-red.svg) |
 
 
   - 
