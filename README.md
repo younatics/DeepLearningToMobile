@@ -151,6 +151,12 @@ freeze_graph.freeze_graph("model/FFNN.pbtxt", "",
 ```
 Now you can use `FFNN_frozen_graph.pb` in TensorFlow Mobile!
 
+| Neural Network | `tf-coreml` |
+| :-: | :---: |
+| Feedforward NN | ✔️ |
+| Convolutional NN | ✔️ |
+| Recurrent NN | ✔️ |
+
 ## Check your Tensor graph
 You have to check frozen tensor graph
 
@@ -189,6 +195,12 @@ mlmodel = tfcoreml.convert(
 ```
 Now you can use `FFNN.mlmodel` in iOS project! 
 
+| Neural Network | `tf-coreml` |
+| :-: | :---: |
+| Feedforward NN | ✔️ |
+| Convolutional NN | ✔️ |
+| Recurrent NN | ✖️ |
+
 ### Reference
 - [tf-coreml](https://github.com/tf-coreml/tf-coreml)
 
@@ -208,6 +220,12 @@ tflite_model = converter.convert()
 open("FFNN.tflite", "wb").write(tflite_model)
 ```
 Now you can use `FFNN.tflite` in Android project! 
+
+| Neural Network | `tf-coreml` |
+| :-: | :---: |
+| Feedforward NN | ✔️ |
+| Convolutional NN | ✔️ |
+| Recurrent NN | ✖️ |
 
 ### Reference
 - [Toco](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/toco)
