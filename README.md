@@ -22,7 +22,8 @@ This repository will show you how to put your own model directly into mobile(iOS
 | Caffe | `coremltools` | `caffe-tensorflow` | ←  |
 
 
-## Part 0. Basic FFNN example to convert
+# Part 0. 
+### Basic FFNN example to convert
 I'll use Golbin code in this [TensorFlow-Tutorials](https://github.com/golbin/TensorFlow-Tutorials/blob/master/04%20-%20Neural%20Network%20Basic/01%20-%20Classification.py)
 
 ```python
@@ -71,8 +72,9 @@ accuracy = tf.reduce_mean(tf.cast(is_correct, tf.float32))
 print('Accuracy: %.2f' % sess.run(accuracy * 100, feed_dict={X: x_data, Y: y_data}))
 ```
 
-## Part 1. Deep learning model to mobile machine learning framwork
-### CoreML
+# Part 1. 
+### Deep learning model to mobile machine learning framwork
+## CoreML
 
 ![CoreML](https://github.com/younatics/DeepLearningToMobile/blob/master/img/coreml.png)
 
@@ -88,7 +90,7 @@ print('Accuracy: %.2f' % sess.run(accuracy * 100, feed_dict={X: x_data, Y: y_dat
 - [Core ML](https://developer.apple.com/documentation/coreml)
 - [Converting Trained Models to Core ML](https://developer.apple.com/documentation/coreml/converting_trained_models_to_core_ml)
 
-### TensorFlow Mobile
+## TensorFlow Mobile
 
 ![tensorflowmobile](https://github.com/younatics/DeepLearningToMobile/blob/master/img/tensorflowmobile.png)
 
