@@ -300,6 +300,7 @@ open("FFNN.tflite", "wb").write(tflite_model)
 ```
 
 Now you can use `FFNN.tflite` in Android project! 
+
 | Neural Network | `toco` |
 | :-: | :---: |
 | Feedforward NN | ✔️ |
