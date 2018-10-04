@@ -13,7 +13,7 @@ This repository will show you how to put your own model directly into mobile(iOS
 | Convolutional NN | ✔️ | ✔️ | ✔️ |
 | Recurrent NN | ✔️ | ✔️ | ❗️ |
 
-#### Part 2. Deep learning framwork to mobile machine learning framwork
+#### Part 2. Deep learning framework to mobile machine learning framework
 | Framework | CoreML | TensorFlow Mobile | Tensorflow Lite |
 | :-------: | :----: | :---------------: | :-------------: |
 | Tensorflow | `tf-coreml` | `tensorflow` | `tensorflow` |
@@ -42,6 +42,7 @@ y_data = np.array([
     [0, 0, 1]
 ])
 
+global_step = tf.Variable(0, trainable=False, name='global_step')
 X = tf.placeholder(tf.float32)
 Y = tf.placeholder(tf.float32)
 W = tf.Variable(tf.random_uniform([2, 3], -1., 1.))
@@ -53,18 +54,22 @@ L = tf.nn.relu(L)
 model = tf.nn.softmax(L)
 cost = tf.reduce_mean(-tf.reduce_sum(Y * tf.log(model), axis=1))
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.01)
-train_op = optimizer.minimize(cost)
+train_op = optimizer.minimize(cost, global_step=global_step)
 
 init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
+saver = tf.train.Saver(tf.global_variables())
+merged = tf.summary.merge_all()
+writer = tf.summary.FileWriter('./logs', sess.graph)
 
 for step in range(100):
     sess.run(train_op, feed_dict={X: x_data, Y: y_data})
 
     if (step + 1) % 10 == 0:
         print(step + 1, sess.run(cost, feed_dict={X: x_data, Y: y_data}))
-
+        tf.train.write_graph(sess.graph_def, '.', './model/FFNN.pbtxt')  
+        saver.save(sess, './model/FFNN.ckpt', global_step=global_step)
 prediction = tf.argmax(model, 1)
 target = tf.argmax(Y, 1)
 is_correct = tf.equal(prediction, target)
@@ -73,7 +78,7 @@ print('Accuracy: %.2f' % sess.run(accuracy * 100, feed_dict={X: x_data, Y: y_dat
 ```
 
 # Part 1. 
-### Deep learning model to mobile machine learning framwork
+### Deep learning model to mobile machine learning framework
 ## CoreML
 
 ![CoreML](https://github.com/younatics/DeepLearningToMobile/blob/master/img/coreml.png)
@@ -102,7 +107,7 @@ print('Accuracy: %.2f' % sess.run(accuracy * 100, feed_dict={X: x_data, Y: y_dat
   | Convolutional NN | ✔️ |
   | Recurrent NN | ✔️ |
   
-### REFERENCE
+### Reference
 - [TensorFlow Mobile](https://www.tensorflow.org/lite/tfmobile/)
 - [TensorFlow on Mobile: Tutorial](https://towardsdatascience.com/tensorflow-on-mobile-tutorial-1-744703297267)
 
@@ -117,8 +122,14 @@ print('Accuracy: %.2f' % sess.run(accuracy * 100, feed_dict={X: x_data, Y: y_dat
   | Convolutional NN | ✔️ |
   | Recurrent NN | RNN is not supported see more information in [this link](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/tf_ops_compatibility.md) |
 
-### REFERENCE
+### Reference
 - [TensorFlow Lite](https://www.tensorflow.org/lite/)
 - [TensorFlow Lite & TensorFlow Compatibility Guide](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/tf_ops_compatibility.md)
 
+# Part 2. 
+### Deep learning framework to mobile machine learning framwork
+
+## TensorFlow
+
+### TensorFlow to Tensorflow Mobile
 
