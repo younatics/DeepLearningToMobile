@@ -171,8 +171,11 @@ for op in graph.get_operations():
     print(op.name)
 ```
 
+### Reference
+- [Graphs and Sessions](https://www.tensorflow.org/guide/graphs)
+
 ## TensorFlow to CoreML (iOS)
-### [tf-coreml](https://github.com/tf-coreml/tf-coreml) is the recommended way for Apple to convert tensorflow to CoreML
+### `tf-coreml` is the recommended way from Apple to convert tensorflow to CoreML
 
 ```python
 import tfcoreml
@@ -184,4 +187,28 @@ mlmodel = tfcoreml.convert(
         input_name_shape_dict = {'Input:0': [1, 2]})
 ```
 Now you can use `FFNN.mlmodel` in iOS project! 
+
+### Reference
+- [tf-coreml](https://github.com/tf-coreml/tf-coreml)
+
+## TensorFlow to TensorFlow Lite (Android)
+### `toco` is the recommended way from Google to convert TensorFlow to TensorFlow Lite
+
+```python
+import tensorflow as tf
+
+graph_def_file = "FFNN_frozen_graph.pb"
+input_arrays = ["Input"]
+output_arrays = ["layer2/prediction"]
+
+converter = tf.contrib.lite.TocoConverter.from_frozen_graph(
+  graph_def_file, input_arrays, output_arrays)
+tflite_model = converter.convert()
+open("FFNN.tflite", "wb").write(tflite_model)
+```
+Now you can use `FFNN.tflite` in Android project! 
+
+### Reference
+- [Toco](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/contrib/lite/toco)
+- [Intro to Machine Learning on Android — How to convert a custom model to TensorFlow Lite](https://heartbeat.fritz.ai/intro-to-machine-learning-on-android-how-to-convert-a-custom-model-to-tensorflow-lite-e07d2d9d50e3)
 
