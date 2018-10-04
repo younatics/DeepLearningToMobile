@@ -104,7 +104,7 @@ print('Accuracy: %.2f' % sess.run(accuracy * 100, feed_dict={X: x_data, Y: y_dat
 - [Converting Trained Models to Core ML](https://developer.apple.com/documentation/coreml/converting_trained_models_to_core_ml)
 
 ## TensorFlow Mobile🔒
-### TensorFlow Mobile is now deprecated
+#### TensorFlow Mobile is now deprecated
 ![tensorflowmobile](https://github.com/younatics/DeepLearningToMobile/blob/master/img/tensorflowmobile.png)
 
 - ML Framework supported by Google, using .pb extension
@@ -138,8 +138,8 @@ print('Accuracy: %.2f' % sess.run(accuracy * 100, feed_dict={X: x_data, Y: y_dat
 ### Deep learning framework to mobile machine learning framwork
 
 ## TensorFlow to Tensorflow Mobile
-We get `FFNN.pbtxt`and `FFNN.ckpt-90` in Part 0 code.
-Freeze graph using `freeze_graph` from `tensorflow.python.tools`
+We can get `FFNN.pbtxt`and `FFNN.ckpt-90` in Part 0 code.
+#### Freeze graph using `freeze_graph` from `tensorflow.python.tools`
 
 ```python
 from tensorflow.python.tools import freeze_graph
@@ -175,7 +175,8 @@ for op in graph.get_operations():
 - [Graphs and Sessions](https://www.tensorflow.org/guide/graphs)
 
 ## TensorFlow to CoreML (iOS)
-### `tf-coreml` is the recommended way from Apple to convert tensorflow to CoreML
+`tf-coreml` is the recommended way from Apple to convert tensorflow to CoreML
+#### `tf-coreml` currently could not convert cycled graph like RNN... etc
 
 ```python
 import tfcoreml
@@ -192,7 +193,7 @@ Now you can use `FFNN.mlmodel` in iOS project!
 - [tf-coreml](https://github.com/tf-coreml/tf-coreml)
 
 ## TensorFlow to TensorFlow Lite (Android)
-### `toco` is the recommended way from Google to convert TensorFlow to TensorFlow Lite
+`toco` is the recommended way from Google to convert TensorFlow to TensorFlow Lite
 
 ```python
 import tensorflow as tf
