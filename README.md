@@ -90,13 +90,35 @@ print('Accuracy: %.2f' % sess.run(accuracy * 100, feed_dict={X: x_data, Y: y_dat
 - [Core ML](https://developer.apple.com/documentation/coreml)
 - [Converting Trained Models to Core ML](https://developer.apple.com/documentation/coreml/converting_trained_models_to_core_ml)
 
-## TensorFlow Mobile
-
+## TensorFlow Mobile🔒
+### TensorFlow Mobile is now deprecated
 ![tensorflowmobile](https://github.com/younatics/DeepLearningToMobile/blob/master/img/tensorflowmobile.png)
 
 - ML Framework supported by Google, using .pb extension
 - Support Java for Android, Objective-C++ for iOS
+- | Neural Network | TensorFlow Mobile |
+  | :-: | :---: |
+  | Feedforward NN | ✔️ |
+  | Convolutional NN | ✔️ |
+  | Recurrent NN | ✔️ |
+  
+### REFERENCE
+- [TensorFlow Mobile](https://www.tensorflow.org/lite/tfmobile/)
+- [TensorFlow on Mobile: Tutorial](https://towardsdatascience.com/tensorflow-on-mobile-tutorial-1-744703297267)
 
+## TensorFlow Lite
 
+- ML Framework supported by Google, using .tflite extension
+- Support Java for Android, Objective-C++ for iOS
+- **Recommand way** by Google to use tensorflow in Mobile
+- | Neural Network | TensorFlow Mobile |
+  | :-: | :---: |
+  | Feedforward NN | ✔️ |
+  | Convolutional NN | ✔️ |
+  | Recurrent NN | RNN is not supported see more information in [this link](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/tf_ops_compatibility.md) |
+
+### REFERENCE
+- [TensorFlow Lite](https://www.tensorflow.org/lite/)
+- [TensorFlow Lite & TensorFlow Compatibility Guide](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/tf_ops_compatibility.md)
 
 
