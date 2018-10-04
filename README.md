@@ -215,7 +215,7 @@ for op in graph.get_operations():
 
 ## TensorFlow to CoreML (iOS)
 `tf-coreml` is the recommended way from Apple to convert tensorflow to CoreML
-#### `tf-coreml` currently could not convert cycled graph like RNN... etc
+#### `tf-coreml` currently could not convert cycled graph like RNN... etc [#124](https://github.com/tf-coreml/tf-coreml/issues/124)
 
 ```python
 import tfcoreml
