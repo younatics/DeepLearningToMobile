@@ -8,11 +8,11 @@ This repository has two parts. First is about **deep learning model to mobile ma
 ### Part1.
 #### Deep learning model to mobile machine learning framwork
 
-| -- | CoreML | TensorFlow Mobile | Tensorflow Lite |
+| Neural Network | CoreML | TensorFlow Mobile | Tensorflow Lite |
 | :-: | :---: | :---------------: | :-------------: |
-| Feedforward | sample | ddd | dd |
-| Convolutional | sample | ddd | dd |
-| Recurrent | sample | ddd | dd |
+| Feedforward NN | ![FFNN-CoreML](https://img.shields.io/badge/Convertible-available-green.svg) | ✔️ | ✔️ |
+| Convolutional NN | ✔️ | ✔️ | ✔️ |
+| Recurrent NN | ✔️ | ✔️ | ✔︎ |
 
 
   - 
@@ -22,3 +22,4 @@ This repository has two parts. First is about **deep learning model to mobile ma
 
 
 
+[![FFNN-CoreML](https://img.shields.io/badge/Convertible-available-green.svg)](http://cocoapods.org/pods/Triangulation)
