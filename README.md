@@ -34,7 +34,7 @@ x_data = np.array(
     [[0, 0], [1, 0], [1, 1], [0, 0], [0, 0], [0, 1]])
 
 y_data = np.array([
-    [1, 0, 0],  
+    [1, 0, 0], 
     [0, 1, 0],  
     [0, 0, 1],  
     [1, 0, 0],
@@ -43,34 +43,42 @@ y_data = np.array([
 ])
 
 global_step = tf.Variable(0, trainable=False, name='global_step')
-X = tf.placeholder(tf.float32)
-Y = tf.placeholder(tf.float32)
-W = tf.Variable(tf.random_uniform([2, 3], -1., 1.))
-b = tf.Variable(tf.zeros([3]))
+X = tf.placeholder(tf.float32, name='Input')
+Y = tf.placeholder(tf.float32, name='Output')
 
-L = tf.add(tf.matmul(X, W), b)
-L = tf.nn.relu(L)
+with tf.name_scope('layer1'):
+    W1 = tf.Variable(tf.random_uniform([2, 10], -1., 1.), name='W1')
+    b1 = tf.Variable(tf.zeros([10]), name='b1')
+    L1 = tf.add(tf.matmul(X, W1), b1, name='L1')
+    L1 = tf.nn.relu(L1)
+    
+with tf.name_scope('layer2'):
+    W2 = tf.Variable(tf.random_uniform([10, 3], -1., 1.), name='W2')
+    b2 = tf.Variable(tf.zeros([3]), name='b2')
+    model = tf.add(tf.matmul(L1, W2), b2, name='model')
+    prediction = tf.argmax(model, 1, name='prediction')
 
-model = tf.nn.softmax(L)
-cost = tf.reduce_mean(-tf.reduce_sum(Y * tf.log(model), axis=1))
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.01)
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(labels=Y, logits=model), name='cost')
+optimizer = tf.train.AdamOptimizer(learning_rate=0.01, name='optimizer')
 train_op = optimizer.minimize(cost, global_step=global_step)
 
 init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
+
 saver = tf.train.Saver(tf.global_variables())
 merged = tf.summary.merge_all()
 writer = tf.summary.FileWriter('./logs', sess.graph)
 
-for step in range(100):
+for step in range(30):
     sess.run(train_op, feed_dict={X: x_data, Y: y_data})
 
-    if (step + 1) % 10 == 0:
+    if (step + 1) % 30 == 0:
         print(step + 1, sess.run(cost, feed_dict={X: x_data, Y: y_data}))
         tf.train.write_graph(sess.graph_def, '.', './model/FFNN.pbtxt')  
         saver.save(sess, './model/FFNN.ckpt', global_step=global_step)
-prediction = tf.argmax(model, 1)
+        break
+        
 target = tf.argmax(Y, 1)
 is_correct = tf.equal(prediction, target)
 accuracy = tf.reduce_mean(tf.cast(is_correct, tf.float32))
@@ -143,5 +151,37 @@ freeze_graph.freeze_graph("model/FFNN.pbtxt", "",
 ```
 Now you can use `FFNN_frozen_graph.pb` in TensorFlow Mobile!
 
+## Check your Tensor graph
+You have to check frozen tensor graph
 
+```python
+def load_graph(frozen_graph_filename):
+    with tf.gfile.GFile(frozen_graph_filename, "rb") as f:
+        graph_def = tf.GraphDef()
+        graph_def.ParseFromString(f.read())
+
+    with tf.Graph().as_default() as graph:
+        tf.import_graph_def(graph_def, name="")
+
+    return graph
+    
+graph = load_graph('FFNN_frozen_graph.pb')
+
+for op in graph.get_operations():
+    print(op.name)
+```
+
+## TensorFlow to CoreML (iOS)
+### [tf-coreml](https://github.com/tf-coreml/tf-coreml) is the recommended way for Apple to convert tensorflow to CoreML
+
+```python
+import tfcoreml
+
+mlmodel = tfcoreml.convert(
+        tf_model_path = 'FFNN_frozen_graph.pb',
+        mlmodel_path = 'FFNN.mlmodel',
+        output_feature_names = ['layer2/prediction:0'],
+        input_name_shape_dict = {'Input:0': [1, 2]})
+```
+Now you can use `FFNN.mlmodel` in iOS project! 
 
