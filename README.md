@@ -129,7 +129,19 @@ print('Accuracy: %.2f' % sess.run(accuracy * 100, feed_dict={X: x_data, Y: y_dat
 # Part 2. 
 ### Deep learning framework to mobile machine learning framwork
 
-## TensorFlow
+## TensorFlow to Tensorflow Mobile
+We get `FFNN.pbtxt`and `FFNN.ckpt-90` in Part 0 code.
+Freeze graph using `freeze_graph` from `tensorflow.python.tools`
 
-### TensorFlow to Tensorflow Mobile
+```python
+from tensorflow.python.tools import freeze_graph
+
+freeze_graph.freeze_graph("model/FFNN.pbtxt", "",
+                          "", "model/FFNN.ckpt-90", "Output",
+                          "", "",
+                          "FFNN_frozen_graph.pb", True, "")
+```
+Now you can use `FFNN_frozen_graph.pb` in TensorFlow Mobile!
+
+
 
