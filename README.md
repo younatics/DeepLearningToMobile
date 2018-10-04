@@ -151,7 +151,7 @@ freeze_graph.freeze_graph("model/FFNN.pbtxt", "",
 ```
 Now you can use `FFNN_frozen_graph.pb` in TensorFlow Mobile!
 
-| Neural Network | `tf-coreml` |
+| Neural Network | `freeze_graph` |
 | :-: | :---: |
 | Feedforward NN | ✔️ |
 | Convolutional NN | ✔️ |
@@ -221,7 +221,7 @@ open("FFNN.tflite", "wb").write(tflite_model)
 ```
 Now you can use `FFNN.tflite` in Android project! 
 
-| Neural Network | `tf-coreml` |
+| Neural Network | `toco` |
 | :-: | :---: |
 | Feedforward NN | ✔️ |
 | Convolutional NN | ✔️ |
