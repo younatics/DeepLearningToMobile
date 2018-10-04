@@ -124,7 +124,7 @@ reult = model.fit(x_data, y_data, shuffle=True, epochs=10, batch_size=2, validat
 
 ![CoreML](https://github.com/younatics/DeepLearningToMobile/blob/master/img/coreml.png)
 
-- ML Framework supported by Apple, using .mlmodel extension
+- ML Framework supported by Apple, using `.mlmodel` extension
 - Automatically generated wrapper for iOS(Swift or Objective-C)
 - | Neural Network | CoreML |
   | :-: | :---: |
@@ -140,7 +140,7 @@ reult = model.fit(x_data, y_data, shuffle=True, epochs=10, batch_size=2, validat
 #### TensorFlow Mobile is now deprecated
 ![tensorflowmobile](https://github.com/younatics/DeepLearningToMobile/blob/master/img/tensorflowmobile.png)
 
-- ML Framework supported by Google, using .pb extension
+- ML Framework supported by Google, using `.pb` extension
 - Support Java for Android, Objective-C++ for iOS
 - | Neural Network | TensorFlow Mobile |
   | :-: | :---: |
@@ -154,7 +154,7 @@ reult = model.fit(x_data, y_data, shuffle=True, epochs=10, batch_size=2, validat
 
 ## TensorFlow Lite
 
-- ML Framework supported by Google, using .tflite extension
+- ML Framework supported by Google, using `.tflite` extension
 - Support Java for Android, Objective-C++ for iOS
 - **Recommand way** by Google to use tensorflow in Mobile
 - | Neural Network | TensorFlow Mobile |
