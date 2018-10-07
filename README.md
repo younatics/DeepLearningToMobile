@@ -90,8 +90,7 @@ print('Accuracy: %.2f' % sess.run(accuracy * 100, feed_dict={X: x_data, Y: y_dat
 ```python
 import numpy as np
 import tensorflow as tf
-# from keras.models import Sequential
-# from keras.layers import Bidirectional, TimeDistributed, Concatenate, LSTM, Dense, Dropout, Flatten, Activation, BatchNormalization
+
 x_data = np.array(
     [[0, 0], [1, 0], [1, 1], [0, 0], [0, 0], [0, 1]])
 
