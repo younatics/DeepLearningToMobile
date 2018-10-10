@@ -1,11 +1,11 @@
 # Deep Learning To Mobile ⚡️
 ### Curated way to convert deep learning model to mobile. 
 
-This repository will show you how to put your own model directly into mobile(iOS/Android) with basic example. First part is about **deep learning model to mobile machine learning framwork**, and second part is about **deep learning framwork to mobile machine learning framwork**
+This repository will show you how to put your own model directly into mobile(iOS/Android) with basic example. First part is about **deep learning model to mobile machine learning framework**, and second part is about **deep learning framework to mobile machine learning framework**
 
 ## Intro
 
-#### Part 1. Deep learning model to mobile machine learning framwork
+#### Part 1. Deep learning model to mobile machine learning framework
 
 | Neural Network | CoreML | TensorFlow Mobile | Tensorflow Lite |
 | :-: | :---: | :---------------: | :-------------: |
@@ -167,7 +167,7 @@ reult = model.fit(x_data, y_data, shuffle=True, epochs=10, batch_size=2, validat
 - [TensorFlow Lite & TensorFlow Compatibility Guide](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/contrib/lite/g3doc/tf_ops_compatibility.md)
 
 # Part 2. 
-### Deep learning framework to mobile machine learning framwork
+### Deep learning framework to mobile machine learning framework
 
 ## TensorFlow to Tensorflow Mobile
 We can get `FFNN.pbtxt`and `FFNN.ckpt-90` in Part 0 code.
